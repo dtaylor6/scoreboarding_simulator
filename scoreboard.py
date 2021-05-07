@@ -237,31 +237,53 @@ class Scoreboard:
         if not raw_hazard:
             # L.D and LW
             if inum == 1 or inum == 4:
+                if r1 not in MEMORY:
+                    raise ValueError(r1, " is an invalid memory address")
                 instr.funit.val1 = MEMORY[r1]
             # LI
             elif inum == 3:
                 instr.funit.val1 = int(inst_list[2])
             # S.D and SW
             elif inum == 2 or inum == 5:
+                if r1 not in REGISTERS:
+                    raise ValueError(r1, " is an invalid register")
                 instr.funit.val1 = REGISTERS[r1]
             # ADD and ADD.D
             elif inum == 6 or inum == 8:
+                if r1 not in REGISTERS:
+                    raise ValueError(r1, " is an invalid register")
+                if r2 not in REGISTERS:
+                    raise ValueError(r2, " is an invalid register")
                 instr.funit.val1 = REGISTERS[r1]
                 instr.funit.val2 = REGISTERS[r2]
             # ADDI
             elif inum == 7:
+                if r1 not in REGISTERS:
+                    raise ValueError(r1, " is an invalid register")
                 instr.funit.val1 = REGISTERS[r1]
                 instr.funit.val2 = int(inst_list[3])
             # SUB and SUB.D
             elif inum == 9 or inum == 10:
+                if r1 not in REGISTERS:
+                    raise ValueError(r1, " is an invalid register")
+                if r2 not in REGISTERS:
+                    raise ValueError(r2, " is an invalid register")
                 instr.funit.val1 = REGISTERS[r1]
                 instr.funit.val2 = REGISTERS[r2]
             # MUL.D
             elif inum == 11:
+                if r1 not in REGISTERS:
+                    raise ValueError(r1, " is an invalid register")
+                if r2 not in REGISTERS:
+                    raise ValueError(r2, " is an invalid register")
                 instr.funit.val1 = REGISTERS[r1]
                 instr.funit.val2 = REGISTERS[r2]
             # DIV.D
             elif inum == 12:
+                if r1 not in REGISTERS:
+                    raise ValueError(r1, " is an invalid register")
+                if r2 not in REGISTERS:
+                    raise ValueError(r2, " is an invalid register")
                 instr.funit.val1 = REGISTERS[r1]
                 instr.funit.val2 = REGISTERS[r2]
 
